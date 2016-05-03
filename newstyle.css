@@ -3,9 +3,6 @@
   font-family: 'source-sans';
   src: url("SourceSansPro-Regular.otf"); }
 @font-face {
-  font-family: 'jumbo';
-  src: url(jumbo.ttf) format("truetype"); }
-@font-face {
   font-family: 'kimbalt';
   src: url(kimbalt.ttf) format("truetype"); }
 /* ========================  Media Queries  ================================= */
