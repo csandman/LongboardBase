@@ -1,0 +1,12 @@
+.logoborder, .decks, #menu, footer, .videoGuidesC1, .videoGuidesC2, #home h3 {
+    display: none;
+}
+
+#home .videoGuidesC1, #home .videoGuidesC2 {
+    display: block;
+}
+
+.print {
+    display: block;
+}
+
