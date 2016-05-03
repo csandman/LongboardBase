@@ -133,6 +133,19 @@ li {
 .skinny {
   max-width: 1024px;
   margin: 0px auto; }
+  .skinny h4 {
+    float: right;
+    margin: 0px; }
+    .skinny h4 a {
+      padding: 7px 12px;
+      border: #218ACC 2px solid;
+      background-color: #218ACC;
+      color: white;
+      font-weight: bold;
+      text-decoration: none; }
+    .skinny h4 a:hover {
+      color: #218ACC;
+      background-color: white; }
 
 /* =============================  Home Page  ============================ */
 #home div.column1 {
@@ -177,19 +190,6 @@ li {
   margin-right: auto; }
 #decksBody h3:first-of-type {
   text-align: center; }
-#decksBody h4 {
-  float: right;
-  margin: 0px; }
-  #decksBody h4 a {
-    padding: 7px 12px;
-    border: #218ACC 2px solid;
-    background-color: #218ACC;
-    color: white;
-    font-weight: bold;
-    text-decoration: none; }
-  #decksBody h4 a:hover {
-    color: #218ACC;
-    background-color: white; }
 #decksBody .background {
   max-width: 100%; }
 #decksBody .logoborder {

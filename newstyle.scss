@@ -198,7 +198,24 @@ li {
 .skinny {
     max-width: 1024px;
     margin: 0px auto;
+    h4 {
+        float: right;
+        margin: 0px;
+        a {
+            padding: 7px 12px;
+            border: $mainBlue 2px solid;
+            background-color: $mainBlue;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        a:hover {
+            color: $mainBlue;
+            background-color: white;
+        }
+    }
 }
+
 
 /* =============================  Home Page  ============================ */
 
@@ -269,22 +286,6 @@ li {
     }
     h3:first-of-type {
         text-align: center;
-    }
-    h4 {
-        float: right;
-        margin: 0px;
-        a {
-            padding: 7px 12px;
-            border: $mainBlue 2px solid;
-            background-color: $mainBlue;
-            color: white;
-            font-weight: bold;
-            text-decoration: none;
-        }
-        a:hover {
-            color: $mainBlue;
-            background-color: white;
-        }
     }
     .background {
         max-width: 100%;

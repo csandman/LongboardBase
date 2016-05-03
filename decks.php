@@ -6,13 +6,11 @@
         <?php include ('nav.php'); ?>
         <p class="print">This page does not print well.</p>
         <div class="background">
-            <?php
+            <?php //creates all board pages that do not already exist
             $query = 'SELECT pmkBoard,fldBrand 
                 FROM tblBoards 
                 ORDER BY fldBoardName ASC';
-
             $decks = $thisDatabaseReader->select($query, "", 0, 1, 0, 0, false, false);
-
             foreach ($decks as $deck) {
                 if (!file_exists(strtolower(preg_replace('/\s*/', '', $deck[1])) .'/'. $deck[0] . '.php')) {
                     $deckPageCopy = 'deckPage.php';
@@ -23,7 +21,7 @@
             }
             ?>
             <div class="skinny">
-                <h4><a href="newForm.php">SEARCH</a></h4>
+                <h4><a href="searchForm.php">SEARCH</a></h4>
                 <h1 class="borderBottom">Deck Database</h1>
             </div>
             <!--

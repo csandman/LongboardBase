@@ -5,7 +5,10 @@
         <header><h1>LONGBOARD BASE</h1></header>
         <?php include ('nav.php'); ?>
         <div class="background">
-            <h1 class="borderBottom">Resources</h1>
+            <div class="skinny">
+                <h4><a href="searchForm.php">SEARCH</a></h4>
+                <h1 class="borderBottom">Resources</h1>
+            </div>
             <h3>Buying New</h3>
             <p>If you want to buy new gear, try and check out your local skate shop before looking online. Skateshops are hard to keep in business and everything you buy from them helps. That being said, you can't get everything from a skateshop and thats where the internet comes in. On every deck page I provide links to where they can be purchased from multiple online stores. Here is a list of the websites I check when looking for links:</p>
             <ul>

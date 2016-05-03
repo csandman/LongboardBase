@@ -5,7 +5,10 @@
         <header><h1>LONGBOARD BASE</h1></header>
         <?php include ('nav.php'); ?>
         <div class="background">
-            <h1 class="borderBottom">Home</h1>
+            <div class="skinny">
+                <h4><a href="searchForm.php">SEARCH</a></h4>
+                <h1 class="borderBottom">Home</h1>
+            </div>
             <div class="columnHolder borderBottom">
                 <div class="column1">
                     <h3><a href="decks.php">Deck Database</a></h3>
