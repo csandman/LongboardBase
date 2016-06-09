@@ -17,6 +17,9 @@ include "lib/constants.php";
           all things longboarding related including a gear database,
           hill finder, guides, etc.">
     <meta name="author" content="Christopher Sandvik">
+    
+    <script src="https://polygit2.appspot.com/components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="test-element.php">
     <?php
     
     $includeDBPath = "bin/";
