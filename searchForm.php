@@ -40,7 +40,7 @@
             $deckName = "";
             $brand = "";
             $shape = "";
-            
+
             $lengthRangeString = "";
             $lengthRange = array();
             $lengthMin = "";
@@ -85,40 +85,35 @@
             //
             if (isset($_POST["btnSearch"])) {
 
-
-
-
-
-
                 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
                 //
-            // SECTION: 2b Sanitize (clean) data 
+                // SECTION: 2b Sanitize (clean) data
                 // remove any potential JavaScript or html code from users input on the
                 // form. Note it is best to follow the same order as declared in section 1c.
 
                 $brand = htmlentities($_POST["lstBrand"], ENT_QUOTES, "UTF-8");
-                
+
                 $shape = htmlentities($_POST["lstShape"], ENT_QUOTES, "UTF-8");
-                
+
                 $lengthRangeString = htmlentities($_POST["lengthRange"], ENT_QUOTES, "UTF-8");
                 preg_match_all('!\d+!', $lengthRangeString, $lengthRangeArray);
                 $lengthRange = $lengthRangeArray[0];
                 $lengthMin = $lengthRange[0];
                 $lengthMax = $lengthRange[1];
-                
+
                 $widthRangeString = htmlentities($_POST["widthRange"], ENT_QUOTES, "UTF-8");
                 preg_match_all('!\d+(?:\.\d+)?!', $widthRangeString, $matches);
                 $floats = array_map('floatval', $matches[0]);
                 $widthMin = $floats[0];
                 $widthMax = $floats[1];
 
-                
+
                 $wbRangeString = htmlentities($_POST["wheelbaseRange"], ENT_QUOTES, "UTF-8");
                 preg_match_all('!\d+!', $wbRangeString, $wbRangeArray);
                 $wbRange = $wbRangeArray[0];
                 $wbMin = $wbRange[0];
                 $wbMax = $wbRange[1];
-                
+
 
                 $deckName = htmlentities($_POST["txtDeckName"], ENT_QUOTES, "UTF-8");
 
@@ -132,9 +127,9 @@
 
                 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
                 //
-            // SECTION: 2c Validation
+                // SECTION: 2c Validation
                 //
-            // Validation section. Check each value for possible errors, empty or
+                // Validation section. Check each value for possible errors, empty or
                 // not what we expect. You will need an IF block for each element you will
                 // check (see above section 1c and 1d). The if blocks should also be in the
                 // order that the elements appear on your form so that the error messages
@@ -142,22 +137,19 @@
                 // see section 3b. The error flag ($emailERROR) will be used in section 3c.
                 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
                 //
-            // SECTION: 2d Process Form - Passed Validation
+                // SECTION: 2d Process Form - Passed Validation
                 //
-            // Process for when the form passes validation (the errorMsg array is empty)
+                // Process for when the form passes validation (the errorMsg array is empty)
                 //
-            if (!$errorMsg) {
-                    if ($debug) {
-                        print "<p>Form is valid</p>";
-                    }
+                if (!$errorMsg) {
                     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
                     //
-            // SECTION: 2e Save Data
-                    $query = 'SELECT pmkBoard,fldBoardName,fldLength,fldBrand 
+                    // SECTION: 2e Save Data
+                    $query = 'SELECT pmkBoard,fldBoardName,fldLength,fldBrand
                     FROM tblBoards
-                    WHERE (fldLength BETWEEN "'.$lengthMin.'" AND "'.$lengthMax.'") 
-                    AND (fldWidth BETWEEN "'.$widthMin.'" AND "'.$widthMax.'") 
-                    AND (fldMinWhlBase <= "'.$wbMax.'") 
+                    WHERE (fldLength BETWEEN "'.$lengthMin.'" AND "'.$lengthMax.'")
+                    AND (fldWidth BETWEEN "'.$widthMin.'" AND "'.$widthMax.'")
+                    AND (fldMinWhlBase <= "'.$wbMax.'")
                     AND (fldMaxWhlBase >= "'.$wbMin.'")';
                     $whereCount = 1;
                     $quoteCount = 12;
@@ -180,40 +172,34 @@
                     }
 
                     $results = $thisDatabaseReader->select($query, "", $whereCount, $conditionCount, $quoteCount, $symbolCount, false, false);
-                    
+
                 } // end form is valid
             } // ends if form was submitted.
             //#############################################################################
             //
             // SECTION 3 Display Form
             //
-                        ?>
+            ?>
             <h1 class="borderBottom">Deck Search</h1>
             <article>
             <?php
             //####################################
             //
-                // SECTION 3a.
+            // SECTION 3a.
             //
-                // 
-            // 
-            // 
+            //
+            //
+            //
             // If its the first time coming to the form or there are errors we are going
             // to display the form.
             if (isset($_POST["btnSearch"]) AND empty($errorMsg)) { // closing of if marked with: end body submit
-                print "<h1>Your Request has ";
 
+                // print $query;
 
-
-                print "been processed</h1>";
-
-                print $query;
-
-
-                print'<div class="decks">';
+                print'<div class="decks grid">';
                 foreach ($results as $deck) {
                     $brandName = strtolower(preg_replace('/\s*/', '', $deck[3]));
-                    print'<div class="gallery">';
+                    print'<div class="gallery ">';
                     print'<a href="' . $brandName . '/' . $deck[0] . '.php"></a>';
                     print'<div><img src="' . $brandName . '/thumbs/' . $deck[0] . 'Thumb.png" alt="' . $deck[1] . '" /></div>';
                     print'<h3>' . $deck[1] . '</h3>';
@@ -222,12 +208,11 @@
                 print'</div>';
             } else {
 
-
                 //####################################
                 //
-                    // SECTION 3b Error Messages
+                // SECTION 3b Error Messages
                 //
-                    // display any error messages before we print out the form
+                // display any error messages before we print out the form
 
                 if ($errorMsg) {
                     print '<div id="errors">';
@@ -267,7 +252,7 @@
                           method="post"
                           id="frmSearch">
                         <h4>Leave any categories blank that you would not like to specify</h4>
-                        
+
                             <fieldset class="search">
                                 <label for="lstBrand" class="required">Select a brand</label>
                                 <select id="lstBrand"
@@ -275,12 +260,12 @@
                                         tabindex="12" >
                                 <option value="Any">Any</option>
                     <?php
-                    $brandQuery = 'SELECT DISTINCT fldBrand 
-                    FROM tblBoards 
+                    $brandQuery = 'SELECT DISTINCT fldBrand
+                    FROM tblBoards
                     ORDER BY fldBrand ASC';
 
                     $brandList = $thisDatabaseReader->select($brandQuery, "", 0, 1, 0, 0, false, false);
-                   
+
                     foreach ($brandList as $item) {
                         print'<option value="' . $item[0] . '">' . $item[0] . '</option>';
                     }
@@ -292,12 +277,12 @@
                                         tabindex="13" >
                                 <option value="Any">Any</option>
                                 <?php
-                    $brandQuery = 'SELECT DISTINCT fldShape 
-                    FROM tblBoards 
+                    $brandQuery = 'SELECT DISTINCT fldShape
+                    FROM tblBoards
                     ORDER BY fldShape ASC';
 
                     $brandList = $thisDatabaseReader->select($brandQuery, "", 0, 1, 0, 0, false, false);
-                    
+
                     foreach ($brandList as $item) {
                         print'<option value="' . $item[0] . '">' . $item[0] . '</option>';
                     }
@@ -311,7 +296,7 @@
                                        >
                                 <?php include ('lengthSlider.php'); ?>
 
-                                
+
                                 <input type="submit" id="btnSearch" name="btnSearch" value="Search" tabindex="900" class="button">
                             </fieldset>
 
@@ -327,3 +312,39 @@
         </div>
     </body>
 </html>
+<!--  Script for masonry layout  -->
+<script>
+var elem = document.querySelector('.decks');
+var msnry = new Masonry( elem, {
+  // options
+  itemSelector: '.gallery',
+  columnWidth: '.gallery',
+  fitWidth: true,
+  gutter: 10,
+  stagger: '0.03s',
+  // slow transitions
+  transitionDuration: '0.7s'
+});
+imagesLoaded( elem ).on( 'progress', function() {
+  // layout Masonry after each image loads
+  msnry.layout();
+});
+msnry.on( 'layoutComplete', function( laidOutItems ) {
+    console.log('Complete');
+});
+
+// Wait until all images load to generate masonry layout
+
+// var grid = document.querySelector('.decks');
+// var msnry;
+//
+// imagesLoaded( grid, function() {
+//   // init Isotope after all images have loaded
+//   msnry = new Masonry( grid, {
+//     itemSelector: '.gallery',
+//     columnWidth: '.gallery',
+//     fitWidth: true,
+//     gutter: 10
+//   });
+// });
+</script>

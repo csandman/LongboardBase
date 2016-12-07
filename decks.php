@@ -6,20 +6,47 @@
         <?php include ('nav.php'); ?>
         <p class="print">This page does not print well.</p>
         <div class="background">
-            <?php //creates all board pages that do not already exist
-            $query = 'SELECT pmkBoard,fldBrand 
-                FROM tblBoards 
+
+            <!-- creates all board pages that do not already exist -->
+            <?php
+            ////////////////////////////////////////////////////////////////////
+            $query = 'SELECT pmkBoard,fldBrand
+                FROM tblBoards
                 ORDER BY fldBoardName ASC';
             $decks = $thisDatabaseReader->select($query, "", 0, 1, 0, 0, false, false);
             foreach ($decks as $deck) {
-                if (!file_exists(strtolower(preg_replace('/\s*/', '', $deck[1])) .'/'. $deck[0] . '.php')) {
+                if (!file_exists(strtolower(preg_replace('/\s*/', '', $deck[1])) . '/' . $deck[0] . '.php')) {
                     $deckPageCopy = 'deckPage.php';
-                    $newDeckPage = strtolower(preg_replace('/\s*/', '', $deck[1])) .'/'. $deck[0] . '.php';
+                    $newDeckPage = strtolower(preg_replace('/\s*/', '', $deck[1])) . '/' . $deck[0] . '.php';
 
                     copy($deckPageCopy, $newDeckPage);
                 }
             }
+            ////////////////////////////////////////////////////////////////////
             ?>
+
+            <!--
+            //show all////////////////////////////////////////////////////////
+            // $previousBrand = '';
+            // $currentBrand = '';
+            // $query = 'SELECT fldBoardName,pmkBoard,fldBrand
+            //     FROM tblBoards
+            //     ORDER BY fldBrand,pmkBoard ASC';
+            // $decks = $thisDatabaseReader->select($query, "", 0, 1, 0, 0, false, false);
+            // $currentBrand = $decks[0][2]
+            //
+            // foreach ($decks as $deck) {
+            //         $currentBrand = $deck[2];
+            //         if (!$currentBrand == $previousBrand) {
+            //             //close previous container
+            //             //show logo
+            //             //start decks box
+            //         }
+            //         //show decks
+            //         $previousBrand = $currentBrand;
+            //     }
+            // }
+             -->
             <div class="skinny">
                 <h4><a href="searchForm.php">SEARCH</a></h4>
                 <h1 class="borderBottom">Deck Database</h1>
@@ -49,8 +76,8 @@
                 </table>
             </div>
             -->
-            <div class="logoborder"><img id="arbor" src="logos/arbor.png" class="logo" alt="The Arbor Collective"></div>
 
+            <div class="logoborder"><img id="arbor" src="logos/arbor.png" class="logo" alt="The Arbor Collective"></div>
             <div class="decks">
                 <?php
                 $brandName = "arbor";
@@ -61,11 +88,12 @@
 
                 $decks = $thisDatabaseReader->select($query, "", 1, 1, 2, 0, false, false);
 
-                
                 foreach ($decks as $deck) {
                     if (!file_exists($brandName . '/thumbs/' . $deck[0] . 'Thumb.png')) {
                         $image = new Imagick($brandName . '/images/' . $deck[0] . '.png');
                         $image->thumbnailImage(0, round($deck[2] * 10));
+                        $image->setImageCompression(\Imagick::COMPRESSION_UNDEFINED);
+                        $image->setImageCompressionQuality(0);
                         $newFileName = $brandName . '/thumbs/' . $deck[0] . 'Thumb.png';
                         $image->writeImage($newFileName);
                         $image->destroy();
@@ -77,9 +105,49 @@
                     print'<h3>' . $deck[1] . '</h3>';
                     print'</div>';
                 }
-                
                 ?>
             </div>
+
+            <?php
+            // $brandName = "arbor";
+            // $query = 'SELECT pmkBoard,fldBoardName,fldBrand
+            //     FROM tblBoards
+            //     WHERE fldBrand = "Arbor"
+            //     ORDER BY fldBoardName ASC';
+            //
+            // $decks = $thisDatabaseReader->select($query, "", 1, 1, 2, 0, false, false);
+            //
+            // $decks1 = array();
+            // foreach ($decks as $deck) {
+            //     $arr = array("pmkBoard" => $deck[0], "fldBoardName" => $deck[1], "fldBrand" => str_replace(' ', '', strtolower($deck[2])));
+            //     array_push($decks1, $arr);
+            // }
+            //
+            // //convert array to json for
+            // $jsonString = json_encode($decks1);
+            // ?>
+            <!-- // <test-element deck-list='<?php echo $jsonString ?>'>
+            // </test-element> -->
+
+            <?php
+            /*
+              if (!file_exists($brandName . '/thumbs/' . $deck[0] . 'Thumb.png')) {
+              $image = new Imagick($brandName . '/images/' . $deck[0] . '.png');
+              $image->thumbnailImage(0, round($deck[2] * 10));
+              $newFileName = $brandName . '/thumbs/' . $deck[0] . 'Thumb.png';
+              $image->writeImage($newFileName);
+              $image->destroy();
+              }
+
+              print'<div class="gallery">';
+              print'<a href="' . $brandName . '/' . $deck[0] . '.php"></a>';
+              print'<div><img src="' . $brandName . '/thumbs/' . $deck[0] . 'Thumb.png" alt="' . $deck[1] . '" /></div>';
+              print'<h3>' . $deck[1] . '</h3>';
+              print'</div>';
+             *
+             */
+            ?>
+
 
             <div class="logoborder"><img id="bustin" src="logos/bustin.png" class="logo" alt="Bustin"></div>
 
@@ -172,32 +240,6 @@
                 }
                 ?>
             </div>
-            <!--
-            <div class="logoborder"><img id="landyachtz" src="logos/landyachtz.png" class="logo" alt="Landyachtz"></div>
-
-            <div class="decks">
-                <div class="gallery">
-                    <a href="landyachtz/prophecy.php"></a>
-                    <div><img src="images/prophecy.png" alt="Landyachtz Prophecy" height="365"></div>
-                    <h3>Prophecy</h3>
-                </div>
-                <div class="gallery">
-                    <a href="landyachtz/charliehorse.php"></a>
-                    <div><img src="images/charliehorse.png" alt="Landyachtz Charlie Horse" height="355"></div>
-                    <h3>Charlie Horse</h3>
-                </div>
-                <div class="gallery">
-                    <a href="landyachtz/wolfshark.php"></a>
-                    <div><img src="images/wolfshark.png" alt="Landyachtz Wolfshark" height="358"></div>
-                    <h3>Wolfshark</h3>
-                </div>
-                <div class="gallery">
-                    <a href="landyachtz/tomahawk.php"></a>
-                    <div><img src="images/tomahawk.png" alt="Landyachtz Tomahawk" height="390"></div>
-                    <h3>Tomahawk</h3>
-                </div>
-            </div>
-            -->
 
             <div class="logoborder"><img id="loaded" src="logos/loaded.png" class="logo" alt="Loaded"></div>
 
@@ -261,8 +303,8 @@
             </div>
             <!--
             <img id="nelson" src="logos/nelson.png" class="logo" alt="Nelson">
-            
-            
+
+
             <div class="gallery">
                 <a href="nelson/batray.php"></a>
                 <div><img src="images/batray.png" alt="Nelson Batray 4.8" height="385"></div>
@@ -374,7 +416,7 @@
                 $decks = $thisDatabaseReader->select($query, "", 1, 1, 2, 0, false, false);
 
                 foreach ($decks as $deck) {
-                    
+
                     if (!file_exists($brandName . '/thumbs/' . $deck[0] . 'Thumb.png')) {
                         $image = new Imagick($brandName . '/images/' . $deck[0] . '.png');
                         $image->thumbnailImage(0, round($deck[2] * 10));
@@ -382,16 +424,16 @@
                         $image->writeImage($newFileName);
                         $image->destroy();
                     }
-                    
+
                     print'<div class="gallery">';
                     print'<a href="' . $brandName . '/' . $deck[0] . '.php"></a>';
-                    print'<div><img src="' . $brandName . '/thumbs/' . $deck[0] . 'Thumb.png" alt="' . $deck[1] . '" height="'.round($deck[2] * 10).'" /></div>';
+                    print'<div><img src="' . $brandName . '/thumbs/' . $deck[0] . 'Thumb.png" alt="' . $deck[1] . '" height="' . round($deck[2] * 10) . '" /></div>';
                     print'<h3>' . $deck[1] . '</h3>';
                     print'</div>';
                 }
                 ?>
             </div>
-            
+
             <div class="logoborder"><img id="valhalla" src="logos/valhalla.png" class="logo" alt="Valhalla"></div>
 
             <div class="decks">
@@ -403,9 +445,9 @@
                 ORDER BY fldBoardName ASC';
 
                 $decks = $thisDatabaseReader->select($query, "", 1, 1, 2, 0, false, false);
-                
+
                 foreach ($decks as $deck) {
-                    
+
                     if (!file_exists($brandName . '/thumbs/' . $deck[0] . 'Thumb.png')) {
                         $image = new Imagick($brandName . '/images/' . $deck[0] . '.png');
                         $image->thumbnailImage(0, round($deck[2] * 10));
@@ -413,17 +455,16 @@
                         $image->writeImage($newFileName);
                         $image->destroy();
                     }
-                    
+
                     print'<div class="gallery">';
                     print'<a href="' . $brandName . '/' . $deck[0] . '.php"></a>';
-                    print'<div><img src="' . $brandName . '/thumbs/' . $deck[0] . 'Thumb.png" alt="' . $deck[1] . '" height="'.round($deck[2] * 10).'" /></div>';
+                    print'<div><img src="' . $brandName . '/thumbs/' . $deck[0] . 'Thumb.png" alt="' . $deck[1] . '" height="' . round($deck[2] * 10) . '" /></div>';
                     print'<h3>' . $deck[1] . '</h3>';
                     print'</div>';
                 }
-                 
                 ?>
             </div>
-            
+
             <div class="logoborder"><img id="madrid" src="logos/madrid.png" class="logo" alt="Madrid"></div>
 
             <div class="decks">
@@ -435,9 +476,9 @@
                 ORDER BY fldBoardName ASC';
 
                 $decks = $thisDatabaseReader->select($query, "", 1, 1, 2, 0, false, false);
-                
+
                 foreach ($decks as $deck) {
-                    
+
                     if (!file_exists($brandName . '/thumbs/' . $deck[0] . 'Thumb.png')) {
                         $image = new Imagick($brandName . '/images/' . $deck[0] . '.png');
                         $image->thumbnailImage(0, round($deck[2] * 10));
@@ -445,18 +486,18 @@
                         $image->writeImage($newFileName);
                         $image->destroy();
                     }
-                    
+
                     print'<div class="gallery">';
                     print'<a href="' . $brandName . '/' . $deck[0] . '.php"></a>';
-                    print'<div><img src="' . $brandName . '/thumbs/' . $deck[0] . 'Thumb.png" alt="' . $deck[1] . '" height="'.round($deck[2] * 10).'" /></div>';
+                    print'<div><img src="' . $brandName . '/thumbs/' . $deck[0] . 'Thumb.png" alt="' . $deck[1] . '" height="' . round($deck[2] * 10) . '" /></div>';
                     print'<h3>' . $deck[1] . '</h3>';
                     print'</div>';
                 }
-                 
                 ?>
             </div>
 
-            <?php include('footer.php'); ?>
+<?php include('footer.php'); ?>
         </div>
     </body>
+
 </html>

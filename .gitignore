@@ -1,4 +1,11 @@
 # Windows image file caches
+
+node_modules/*
+.ftpconfig
+.idea/*
+gulpfile.js
+
+
 Thumbs.db
 ehthumbs.db
 

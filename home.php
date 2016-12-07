@@ -11,16 +11,28 @@
             </div>
             <div class="columnHolder borderBottom">
                 <div class="column1">
-                    <h3><a href="decks.php">Deck Database</a></h3>
-                    <p>A database of longboard decks with descriptions, deck specifications, websites to buy from, and product videos.</p>
-                    <h3><a href="newBoards.php">New Boards</a></h3>
-                    <p>A collection decks added by users that have yet been added to the main database</p>
+                    <div class="card">
+                        <a href="decks.php"><span></span></a>
+                        <h3>Deck Database</h3>
+                        <p>A database of longboard decks with descriptions, deck specifications, websites to buy from, and product videos.</p>
+                    </div>
+                    <div class="card">
+                        <a href="newBoards.php"><span></span></a>
+                        <h3>New Boards</h3>
+                        <p>A collection decks added by users that have yet been added to the main database</p>
+                    </div>
                 </div>
                 <div class="column2">
-                    <h3><a href="form.php">Add a Deck</a></h3>
-                    <p>Submit details about a specific deck that you would like to be added to the Deck Database.</p>
-                    <h3><a href="guides.php">Guides</a></h3>
-                    <p>A variety of guides on how to set up and maintain your longboard and how to do a variety of tricks. Guides are in both text and video form.</p>
+                    <div class="card">
+                        <a href="form.php"><span></span></a>
+                        <h3>Add a Deck</h3>
+                        <p>Submit details about a specific deck that you would like to be added to the Deck Database.</p>
+                    </div>
+                    <div class="card">
+                        <a href="guides.php"><span></span></a>
+                        <h3>Guides</h3>
+                        <p>A variety of guides on how to set up and maintain your longboard and how to do a variety of tricks. Guides are in both text and video form.</p>
+                    </div>
                 </div>
             </div>
             <h3>Featured Decks:</h3>

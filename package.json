@@ -1,0 +1,25 @@
+{
+  "name": "base)",
+  "version": "1.0.0",
+  "description": "Longboard Base",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csandman/lbbase.git"
+  },
+  "keywords": [
+    "Longboard"
+  ],
+  "author": "Chris Sandvik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/csandman/lbbase/issues"
+  },
+  "homepage": "https://github.com/csandman/lbbase#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}

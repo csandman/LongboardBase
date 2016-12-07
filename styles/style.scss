@@ -1,87 +1,20 @@
 /* ========================  Font Faces  ==================================== */
 
-@font-face{
-    font-family: 'source-sans';
-    src: url('SourceSansPro-Regular.otf');}
-
-@font-face{
-    font-family: 'kimbalt';
-    src: url(kimbalt.ttf) format("truetype");
-}
 
 /* ========================  Media Queries  ================================= */
 
-@media only screen 
-and (min-device-width : 1900px) {
-    div.decks {
-        width: 1620px;
-    }
-}
-
-@media only screen 
-and (min-device-width : 1716px)
-and (max-device-width : 1899px) {
-    div.decks {
-        width: 1440px;
-    }
-}
-@media only screen 
-and (min-device-width : 1516px)
-and (max-device-width : 1715px) {
-    div.decks {
-        width: 1260px;
-    }
-}
-@media only screen 
-and (min-device-width : 1316px)
-and (max-device-width : 1515px) {
-    div.decks {
-        width: 1080px;
-    }
-}
-@media only screen 
-and (min-device-width : 1116px)
-and (max-device-width : 1315px) {
-    div.decks {
-        width: 900px;
-    }
-}
-@media only screen 
-and (min-device-width : 916px)
-and (max-device-width : 1115px) {
-    div.decks {
-        width: 720px;
-    }
-}
-@media only screen 
-and (min-device-width : 716px)
-and (max-device-width : 915px) {
-    div.decks {
-        width: 540px;
-    }
-}
-@media only screen 
-and (min-device-width : 516px)
-and (max-device-width : 715px) {
-    div.decks {
-        width: 360px;
-    }
-}
-@media only screen 
-and (min-device-width : 316px)
-and (max-device-width : 515px) {
-    div.decks {
-        width: 180px;
-    }
-}
 
 /* =======================  General Section  ================================ */
 
 $mainBlue: #218ACC;
 
 * {
-    font-size: 13pt;
-    font-family: 'Open Sans', sans-serif;
+    font-size: 14pt;
+    font-family: 'source-sans', sans-serif;
+}
+
+html {
+    overflow-y: scroll;
 }
 
 html, body {
@@ -107,24 +40,14 @@ html, body {
 }
 
 .background {
-    padding-top: 25px;
-    margin: 96px auto 0px auto;
-    width: 100%;
+    padding-top: 2rem;
+    margin: 5.5rem auto 0 auto;
+    width: 90%;
     max-width: 1024px;
 }
-.decks {
-    margin: 0px auto;
-    overflow: hidden;
-    max-width: 100%;
-}
-
-
-
 body {
     background-color: #e7eff6;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 90%;
+    width: 100%;
     font-family: Arial, Georgia, sans-serif;
     line-height: 1.3em;
     color: black;
@@ -136,63 +59,31 @@ h1 {
 }
 h2 {
     font-size: 2em;
+    line-height: 1em;
 }
 h3 {
     font-size: 1.5em;
 }
 h4 {
-    font-size: 1em;	
+    font-size: 1em;
 }
-h5 { 
-    font-size: .6em;	
+h5 {
+    font-size: .6em;
 }
 h6 {
-    font-size: .5em;	
+    font-size: .5em;
 }
 h1,h2,h3,h4,h5,h6 {
-    font-family: 'Raleway', sans-serif;
     color: $mainBlue;
     font-weight: bold;
 }
 
-ol ol ol li {
-    list-style: lower-alpha
-}
-
-ol ol li {
-    font-weight: normal;
-    list-style: decimal;
-    padding-top: 0em
-}
-
-ol li {
-    font-weight: bold;
-    list-style: upper-roman;
-    padding-top: 1em
-}
-
-ul ul ul li { 
-    list-style: circle;
-}
-
-ul ul li { 
-    list-style: square;
-}
-
-ul li { 
-    list-style: disc;
-}
-
 a:link {
-    color: #2193c0;
+    color: $mainBlue;
 }
 
 a:visited {
     color: #092834;
-}
-
-li {
-    margin: 0;
 }
 
 .skinny {
@@ -214,51 +105,102 @@ li {
             background-color: white;
         }
     }
+    a {
+        text-decoration: none;
+    }
 }
 
 
 /* =============================  Home Page  ============================ */
 
 #home {
+    div.card{
+        background-color: white;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+        border-radius: 2px;
+        display: inline-block;
+        min-height: 250px;
+        width: 90%;
+        margin: 30px 0px 30px 20px;
+        position: relative;
+        h3 {
+            width: 100%;
+            background-color: #218ACC;
+            padding: 0px;
+            margin: 0px;
+            font-size: 2em;
+            line-height: 2em;
+            color: white;
+            font-family: sans-serif;
+        }
+        p{
+            margin: 0px;
+            padding: 25px;
+            line-height: 1.5em;
+        }
+        span{
+            position:absolute;
+            width:100%;
+            height:100%;
+            top:0;
+            left: 0;
+            z-index: 1;
+            /* fixes overlap error in IE7/8,
+               make sure you have an empty gif */
+            background-image: url('empty.gif');
+        }
+    }
+    div.card:hover{
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
+    .background {
+        margin: 5.5rem auto 0 auto;
+        width: 90%;
+        max-width: 1024px;
+    }
     div.column1 {
         float: left;
     }
     div.column2 {
         float: right;
     }
-    div.decks {
-        max-width: 900px;
-        width: 900px;
-    }
     div.column1, div.column2 {
         width: 47%;
         max-width: 500px;
-        a {
-            padding: 7px 12px;
-            border: $mainBlue 2px solid;
-            background-color: $mainBlue;
-            color: white;
-            font-weight: bold;
-            text-decoration: none;
-        }
-        a:link {
-            font-size: 1.2em;
-            color: white;
-        }
-        a:visited {
-            font-size: 1.2em;
-            color: white;
-        }
-        a:hover {
-            background-color: white;
-            color: $mainBlue;
-        }
+        /*        a {
+                    padding: 7px 12px;
+                    border: $mainBlue 2px solid;
+                    background-color: $mainBlue;
+                    color: white;
+                    font-weight: bold;
+                    text-decoration: none;
+                }
+                a:link {
+                    font-size: 1.2em;
+                    color: white;
+                }
+                a:visited {
+                    font-size: 1.2em;
+                    color: white;
+                }
+                a:hover {
+                    background-color: white;
+                    color: $mainBlue;
+                }*/
         h3 {
             text-align: center;
         }
     }
-} 
-
+}
+@media only screen and (max-width: 650px) {
+    #home {
+        div.column1, div.column2 {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+}
 
 
 /* =============================  New Board Page  ============================ */
@@ -266,9 +208,6 @@ li {
 #newBoards {
     .background li {
         padding-top: 5px;
-    }
-    div.decks {
-        width: 900px;
     }
 }
 
@@ -278,48 +217,46 @@ li {
 
 
 #decksBody {
-
-    h1:first-of-type {
-        max-width: 1024px;
-        margin-left: auto;
-        margin-right: auto;
-    }
     h3:first-of-type {
         text-align: center;
     }
     .background {
         max-width: 100%;
+        width: 100%;
     }
     .logoborder {
         width: 100%;
-        border-top: $mainBlue solid 5px;
-        border-bottom: $mainBlue solid 5px;
-        margin-top: 35px;
-        margin-bottom: 20px;
-        overflow: auto;
+        border-top: thin #CCD1D9 solid;
+        border-bottom: thin #CCD1D9 solid;
+        margin: 40px 0px;
+        background-color: white;
     }
     .logo {
-        width: 100%;
+        width: 90%;
         max-width: 1000px;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 15px;
-        padding-bottom: 15px;
-        clear: both;
+        margin: 0px auto;
+        padding: 15px 0px;
         display: block;
     }
 }
+.decks {
+    margin: 0px auto;
+    max-width: 100%;
+    overflow: auto;
+}
 .gallery {
+    display: block;
+    float: left;
     margin: 10px;
     border: 2px solid $mainBlue;
     height: 520px;
     width: 156px;
-    float: left;
-    text-align: center;
     border-radius: 8px;
     background-color: #A8CCFF;
-    position:relative;
     overflow:hidden;
+    text-align: center;
+    position: relative;
+    box-sizing: border-box;
     a {
         position:absolute;
         width:100%;
@@ -343,8 +280,8 @@ li {
     h3 {
         font-weight: bold;
         color: white;
-        display: inline-block;
-        font-size: 20px;
+        display: block;
+        font-size: 1rem;
         padding: 3px 0px;
         border-top: 1px $mainBlue solid;
         border-bottom: 1px $mainBlue solid;
@@ -380,7 +317,7 @@ div.jumpToDeck {
         padding: 15px 0px;
     }
     a {
-        font-size: 22px;
+        font-size: 1rem;
         display: inline-block;
         width: 130px;
         border: $mainBlue 2px solid;
@@ -392,6 +329,28 @@ div.jumpToDeck {
 }
 
 /* ===============================  Deck Page   ============================= */
+@media only screen and (max-width: 800px) {
+    body#deckPage {
+        h2 {
+            width: 100% !important;
+        }
+    }
+    div.deckBody {
+        div.column1, div.column2 {
+            float: none !important;
+            width: 100% !important;
+        }
+        img {
+            height: 300px;
+        }
+    }
+    body#deckPage h4 {
+        display: none !important;
+        a {
+            display: none !important;
+        }
+    }
+}
 
 body#deckPage h4 {
     float: right;
@@ -411,6 +370,13 @@ body#deckPage h4 {
     }
 }
 
+body#deckPage {
+    h2 {
+        width: 400px / 960px * 100%;
+        text-align: center;
+    }
+}
+
 div.deckBody {
     width: 100%;
     overflow: hidden;
@@ -418,9 +384,10 @@ div.deckBody {
         width: 400px / 960px * 100%;
         float: left;
         figure {
-            border: solid 2px #003366;
+            border: solid 2px $mainBlue;
+            border-radius: 3px;
             padding: 35px 25px;
-            background-color: $mainBlue;
+            background-color: white;
             width: auto;
             text-align: center;
             min-width: 193px;
@@ -429,12 +396,16 @@ div.deckBody {
     div.column2 {
         width: 500px / 960px * 100%;
         float: right;
+        h3 {
+            text-align: center;
+            margin-top: 2.2rem;
+        }
         table {
             border-collapse: collapse;
             margin-left: auto;
             margin-right: auto;
             width: 100%;
-            margin-bottom: 41px;
+            margin-bottom: 1.5rem;;
             table-layout: fixed;
         }
         tr {
@@ -454,6 +425,7 @@ div.deckBody {
 }
 
 .video-container {
+    margin-top: 1rem;
     position: relative;
     padding-bottom: 56.25%;
     padding-top: 35px;
@@ -549,6 +521,23 @@ label {
 
 
 #search {
+    .decks {
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    .gallery {
+        height: auto;
+        div {
+            height: auto;
+        }
+        h3 {
+            margin: 0;
+        }
+    }
+    .background {
+        max-width: 100%;
+        width: 100%;
+    }
     #slider-range {
         width: 25em;
         max-width: 100%;
@@ -598,10 +587,6 @@ label {
     font-weight: bold;
 }
 
-body#search div.background {
-    max-width: 100%;
-}
-
 /* =============================== Guides Page ============================== */
 
 
@@ -630,21 +615,19 @@ body#search div.background {
 /* =============================  Header  =================================== */
 
 header {
-    width: 100%;
-    height: 56px;
-    overflow: hidden;
     position: absolute;
     top: 0px;
     left: 0px;
-    z-index: 102;
+    width: 100%;
+    height: 3.5rem;
     background-color: white;
     h1 {
         text-align: center;
-        font-size: 2em;
-        font-family: kimbalt, sans-serif;
-        letter-spacing: 0.1em;
-        margin: 19px auto;
+        font-family:  'Bungee', sans-serif;
         color: $mainBlue;
+        font-size: 2rem;
+        line-height: 1rem;
+        font-weight: 300;
     }
 }
 
@@ -656,39 +639,47 @@ header {
 
 /* ===================  Navigation Section  ================================= */
 
+@media only screen and (max-width: 800px) {
+    /* For mobile phones: */
+    nav#menu {
+        li {
+            display: block;
+            border-bottom: 1px solid black;
+            border-right: none;
+            border-left: none;
+        }
+    }
+    .background {
+        margin-top: 15.5rem !important;
+    }
+}
+
 nav {
     position: absolute;
-    top: 56px;
+    top: 3.5rem;
     left: 0px;
     width: 100%;
-    height: 35px;
-    font-size: 16px;
     font-weight: bold;
     text-align: center;
     background: white;
     border-top: solid thin black;
     border-bottom: solid thin black;
-    overflow: hidden;
-    z-index: 101;
     font-family: 'Roboto', sans-serif;
     -webkit-box-shadow: 0px 3px 5px 0px rgba(128,128,128,1);
     -moz-box-shadow: 0px 3px 5px 0px rgba(128,128,128,1);
     box-shadow: 0px 3px 5px 0px rgba(128,128,128,1);
+    overflow:hidden;
     ul {
-        height: 35px;
-        padding: 0px;
         margin: 0px auto;
-        position: relative;
         width: 100%;
         max-width: 1024px;
         display: table;
         table-layout: fixed;
         border-collapse: collapse;
     }
-    li { 
+    li {
         border-left: solid black thin;
-        height: 35px;
-        line-height: 35px;
+        line-height: 2rem;
         padding: 0;
         width: auto;
         display: table-cell;
@@ -702,6 +693,9 @@ nav {
         padding: 0;
         display: block;
         background-color: white;
+        -webkit-transition: background-color 0.15s, color 0.15s; /* Safari */
+        transition: background-color 0.15s, color 0.15s;
+        transition-timing-function: ease-in-out;
     }
     a:link, a:visited {
         color: black;
